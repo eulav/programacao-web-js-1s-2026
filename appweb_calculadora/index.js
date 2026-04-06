@@ -39,7 +39,7 @@ app.get('/calculadora/somar/:a/:b', (req,res)=>{
     log.push(`${a} + ${b} = ${resultado} <br>`);
     res.send(`${a} + ${b} = ${resultado}`);
     
-})
+});
 
 app.get('/calculadora/log', (req,res)=>{
     resultado = "";

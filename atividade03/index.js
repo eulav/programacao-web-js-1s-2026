@@ -1,61 +1,34 @@
 const express = require('express');
 
-//const movimentacoes = require('./estoque');
+const movimentacoes = require('./estoque');
 
 const app = express();
 
 const PORT = 8080;
 
-//app.length('/',(req, res)=>{
-  //  res.send("Olá, web")
-//});
+app.length('/',(req, res)=>{
+    res.send("Olá, web")
+});
 
-//app.get
+app.get
 
-let estoque = []
+app.get('/estoque/adicionarNoEstoque/:id/:nome/:qtd', (req,res)=>{
+    let id = req.params.id;
+    let nome = req.params.nome;
+    let qtd = parseInt(req.params.qtd);
+    //let op = req.params.op;
+    adicionarNoEstoque(id,nome,qtd);
+    
+})
 
-function adicionarNoEstoque(id,item,quantidade){
-    estoque.push(id)
-    estoque.push(item);
-    estoque.push(quantidade);
-}
+app.get('/estoque/removerDoEstoque/:id', (req,res)=>{
+    let id = req.params.id;
+    //let op = req.params.op;
+    removerDoEstoque(id);
+    
+})
 
-function removerDoEstoque(id){
-    let antepenultimaPosi = estoque.length-3
-    for (let i=0;i<estoque.length; i++){
-        if (estoque[i] == id){
-            if(i==0){
-                estoque.shift();
-                estoque.shift();
-                estoque.shift();
-
-                /**for (let y=i; y<estoque.length;y++){
-                    estoque[y]=estoque[y+1];
-                estoque.shift(); */
-            }
-            }
-            else if(i==antepenultimaPosi){
-                estoque.pop();
-                estoque.pop();
-                estoque.pop();
-            }
-            else{
-                estoque.slice(i,3);
-                /*
-                let tempId = estoque[i];
-                let tempNome = estoque[i+1]
-                let tempQtde = estoque[i+2]
-            for (let y=i; y<estoque.length;y++){
-                estoque[y]=estoque[y+3];
-            }
-            estoque[estoque.length-1] = temp;
-            estoque.pop();
-            */
-            }
-        }
-    };
-
-
+/*
 adicionarNoEstoque("0","Laranja",10);
 adicionarNoEstoque("2","Limao",3);
 adicionarNoEstoque("3","Ameixa0",4);
@@ -79,3 +52,4 @@ console.log(`\nNovo tamanho:  ${estoque.length}`);
 for (let i=0;i<estoque.length; i++){
     console.log(estoque[i],"\n");
 }
+*/
